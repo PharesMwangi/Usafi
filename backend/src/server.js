@@ -3,9 +3,9 @@ const express = require("express")
 const http = require("http");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const { server } = require("socket.io");
+const { Server } = require("socket.io");
 
-const connectDB = require("./config/db");
+const { connectDB } = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const conversationRoutes = require("./routes/conversationRoutes");
