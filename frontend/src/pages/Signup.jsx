@@ -72,7 +72,7 @@ export default function Signup(){
                 </div>
                 <div className="field">
                     <label htmlFor="phone">Phone Number</label>
-                    <input id= "phone" name= "phone" value={form.phone} onChange={handleChange} placeholder="07** *** ***" required />
+                    <input id= "phone" name= "phone" value={form.phone} onChange={handleChange} placeholder="07XX XXX XXX" required />
                 </div>
                 <div className="field">
                     <label htmlFor="password">Password</label>
