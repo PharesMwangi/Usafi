@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 
 export default function Signup(){
     const [searchParams] = useSearchParams();
-    const [signup] = useAuth();
+    const {signup} = useAuth();
     const navigate = useNavigate();
 
     const [role, setRole] = useState(searchParams.get("role") === "employer" ? "employer" : "maid");
