@@ -2,7 +2,7 @@ import {Link}  from "react-router-dom";
 
 export default function Landing(){
     return(
-        <div className="container" style={{padding: "72px 20px", textAlign: center}}>
+        <div className="container" style={{padding: "72px 20px", textAlign: "center"}}>
             <h1>Find trusted house manager. Or find your next job.</h1>
             <p style={{fontSize: "1.15rem", color: "var(--color-ink-soft", maxWidth: 560, margin: "0 auto 36px"}}>
                 Usafi connects house managers with employers across kenya - build profiles,

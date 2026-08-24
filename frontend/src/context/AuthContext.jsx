@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import api from "../api/xios";
+import api from "../api/axios";
 import {disconnectSocket} from "../api/socket";
 
 const AuthContext = createContext(null);
