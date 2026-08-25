@@ -21,7 +21,7 @@ export default function Signup(){
         try {
             const user = await signup({...form, role});
             //branch point
-            navigate(user.role === "maid" ? "/create-profile" : "browse");
+            navigate(user.role === "maid" ? "/create-profile" : "/browse");
         } catch (err) {
             setError(err.response?.data?.message || "Signup failed, Please try again.");
         }finally{
