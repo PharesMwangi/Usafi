@@ -9,7 +9,7 @@ export default function Login(){
     const [error, setError] = useState("");
     const [submitting, setSubmitting] = useState(false);
 
-    const handleChange = (e) => setForm({...form, [e.target.name]: e.target.vaue});
+    const handleChange = (e) => setForm({...form, [e.target.name]: e.target.value});
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -17,7 +17,7 @@ export default function Login(){
         setSubmitting(true);
         try {
             const user = await login(form);
-            navigate(user.role === "maid" ? "/create-profile" : "browse");
+            navigate(user.role === "maid" ? "/create-profile" : "/browse");
         } catch (err) {
             setError(err.response?.data?.message || "Login failed. Check your details.");
         }finally{
