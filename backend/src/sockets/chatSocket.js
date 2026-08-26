@@ -9,7 +9,7 @@ const authenticateSocket = async (socket, next) =>{
         const rawCookie = socket.handshake.headers.cookie;
         if(!rawCookie) return next(new Error("No Auth Cookie"));
 
-        const {token } = cookie.parse(rawCookie);
+        const { token } = cookie.parseCookie(rawCookie);
         if(!token) return next(new Error("No token"));
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -19,6 +19,7 @@ const authenticateSocket = async (socket, next) =>{
         socket.user = user;
         next();
     } catch (err) {
+        console.error("Socket auth error:", err);
         next(new Error("Socket auth failed!"));
     }
 };
