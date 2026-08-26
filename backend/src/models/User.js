@@ -23,7 +23,7 @@ userSchema.methods.comparePassword = async function (candidatePassword){
 };
 
 //never send password hash in api responses
-userSchema.methods.tojson = function (){
+userSchema.methods.toJSON = function (){
     const obj = this.toObject();
     delete obj.password;
     return obj;
