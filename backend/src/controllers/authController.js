@@ -52,6 +52,7 @@ const login = async (req, res) =>{
         }
 
         const token = signToken(user._id);
+        console.log("LOGIN HANDLER HIT - about to set cookie");
         res.cookie("token", token, COOKIE_OPTIONS);
         res.json({ user });
     } catch (err) {
