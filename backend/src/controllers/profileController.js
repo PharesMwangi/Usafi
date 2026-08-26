@@ -50,7 +50,7 @@ const updateMyProfile = async (req, res) =>{
 const getMyProfile = async (req, res) =>{
     const profile = await MaidProfile.findOne({ user: req.user._id}).populate("user", "name phone email");
     if(!profile){
-        return res.status(404).jsom({message: "No profile found"});
+        return res.status(404).json({message: "No profile found"});
     }
     res.json({ profile });
 };

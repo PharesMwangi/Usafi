@@ -27,7 +27,7 @@ export default function CreateProfile(){
     const [ loading, setLoading] = useState(true);
     const [ saving, setSaving] = useState(false);
     const [ message, setMessage] = useState("");
-    const [ error, setError] = useEffect("");
+    const [ error, setError] = useState("");
 
     useEffect(() =>{
         api
@@ -128,7 +128,7 @@ export default function CreateProfile(){
                         <button
                             type="button"
                             key={s.value}
-                            onClick={() => toggleSkill(s.value)}
+                            onClick={() => toogleSkill(s.value)}
                             className="badge"
                             style={{
                             cursor: "pointer",
