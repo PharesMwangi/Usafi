@@ -216,7 +216,7 @@ a:focus-visible {
 
 /* Signature woven-line divider, evokes a kitenge weave without being literal */
 .weave-divider {
-  height: 6px;
+  height: 2px;
   width: 100%;
   background: repeating-linear-gradient(
     115deg,
