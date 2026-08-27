@@ -5,11 +5,17 @@ let socket = null;
 
 // Created lazily, once, after login — reused everywhere the chat needs it
 export const getSocket = () => {
+
+    const token = localStorage.getItem("usafi_token");
+
     if(!socket){
         socket = io(API_URL, {
-            withCredentials: true, // sends the same httpOnly cookie the REST API uses
             autoConnect: false,
+            auth: { token },
         });
+    }else{
+        // Keep the auth payload in sync in case the token changed since the socket was created
+    socket.auth = { token };
     }
     return socket;
 };
