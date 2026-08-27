@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-const COOKIE_OPTIONS ={
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-};
+// const COOKIE_OPTIONS ={
+//     httpOnly: true,
+//     secure: true,
+//     sameSite: "none",
+//     maxAge: 7 * 24 * 60 * 60 * 1000,
+// };
 
 const signToken = (userId) =>
     jwt.sign({ id: userId}, process.env.JWT_SECRET, { expiresIn: "7d" });
@@ -31,8 +31,7 @@ const signup = async (req, res) =>{
         const user = await User.create({ name, email, password, phone, role });
         const token = signToken(user._id);
 
-        res.cookie("token", token, COOKIE_OPTIONS);
-        res.status(201).json({ user})
+        res.status(201).json({ user, token })
     } catch (err) {
         res.status(500).json({message: "Signup Failed!", error: err.message });
     }
@@ -52,9 +51,9 @@ const login = async (req, res) =>{
         }
 
         const token = signToken(user._id);
-        console.log("LOGIN HANDLER HIT - about to set cookie");
-        res.cookie("token", token, COOKIE_OPTIONS);
-        res.json({ user });
+        // console.log("LOGIN HANDLER HIT - about to set cookie");
+        // res.cookie("token", token, COOKIE_OPTIONS);
+        res.json({ user, token });
     } catch (err) {
         res.status(500).json({message: "Login failed", error: err.message});
     }
@@ -62,7 +61,7 @@ const login = async (req, res) =>{
 
 //logout
 const logout = async (req, res) =>{
-    res.clearCookie("token", {...COOKIE_OPTIONS, maxAge: undefined});
+    // res.clearCookie("token", {...COOKIE_OPTIONS, maxAge: undefined});
     res.json({ message: "Logged Out"});
 };
 

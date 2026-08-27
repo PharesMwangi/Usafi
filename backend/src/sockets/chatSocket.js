@@ -1,16 +1,13 @@
 const jwt = require("jsonwebtoken");
-const cookie = require("cookie");
+// const cookie = require("cookie");
 const User = require("../models/User");
 const { saveMessage } = require("../controllers/conversationController");
 
 //authenticate socket connection using same httponly cookie
 const authenticateSocket = async (socket, next) =>{
     try {
-        const rawCookie = socket.handshake.headers.cookie;
-        if(!rawCookie) return next(new Error("No Auth Cookie"));
-
-        const { token } = cookie.parseCookie(rawCookie);
-        if(!token) return next(new Error("No token"));
+        const token = socket.handshake.auth?.token;
+        if (!token) return next(new Error("No token"));
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(decoded.id);
@@ -65,7 +62,7 @@ const initChatSocket = (io) =>{
         });
 
         socket.on("stop typing", ({conversationId})=>{
-            socket.to(conversationId).emit("stup typing", {userId: socket.user._id});
+            socket.to(conversationId).emit("stop typing", {userId: socket.user._id});
         });
     });
 };
